@@ -35,9 +35,14 @@ class _VitrinePageState extends State<VitrinePage> {
             Divider(
               color: Colors.grey[300],
               thickness: .5,
-            )
+            ),
 
             // tabbar
+            Container(
+              height: 30,
+              width: 50,
+              color: Colors.green,
+            )
 
             // tab content
 
