@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Overview",
+        "Manufacturer": "Ferrari",
+        "Production": "1987–1992",
+        "Assembly": "Maranello, Italy"
+    },
+    {
+        "title": "Body",
+        "Class": "Sports car (S)",
+        "Body style": "2-door berlinetta",
+        "Layout":	"Longitudinally-mounted"
+    },
+    {
+        "title":"Powertrain",
+        "Engine":"Tipo F120A/F120D 90° V8",
+        "Power output": "478 PS (352 kW; 471 hp)",
+        "Transmission":	"5-speed manual"
+    },
+    {
+        "title": "Dimensions",
+        "Wheelbase":	"2,450 mm",
+        "Length":	"4,358 mm",
+        "Width":	"1,970 mm",
+        "Height":	"1,124 mm"
+    }
+]

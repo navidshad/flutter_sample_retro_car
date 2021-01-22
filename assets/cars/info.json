@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Overview",
+        "Manufacturer": "",
+        "Production": "",
+        "Assembly": ""
+    },
+    {
+        "title": "Body",
+        "Class": "",
+        "Body style": "",
+        "Layout": ""
+    },
+    {
+        "title": "Powertrain",
+        "Engine": "",
+        "Power output": "",
+        "Transmission":	""
+    },
+    {
+        "title": "Dimensions",
+        "Wheelbase": "",
+        "Length": "",
+        "Width": "",
+        "Height": ""
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Overview",
+        "Manufacturer": "Buick (General Motors)",
+        "Production": "1973–2004",
+        "Assembly": "North America"
+    },
+    {
+        "title": "Body",
+        "Class": "Mid-size car (D)",
+        "Body style": "luxury car",
+        "Layout": "FR layout"
+    },
+    {
+        "title": "Powertrain",
+        "Engine": "2.8 L X V6",
+        "Power output": "125 hp (93 kW)",
+        "Transmission":	"4-speed automatic"
+    },
+    {
+        "title": "Dimensions",
+        "Wheelbase": "107.5 in (2,730 mm)",
+        "Length": "4,882 mm",
+        "Width": "72.5 in (1,842 mm)",
+        "Height": "Sedan: 54.5 in (1,384 mm)"
+    }
+]
