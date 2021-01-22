@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:sample_retro_car/services/collection.dart';
+import 'package:sample_retro_car/widgets/CarCard.dart';
+import 'package:sample_retro_car/widgets/CustomBottomNavigationBar.dart';
 
 class VitrinePage extends StatefulWidget {
   VitrinePage({Key key}) : super(key: key);
@@ -8,11 +12,35 @@ class VitrinePage extends StatefulWidget {
 }
 
 class _VitrinePageState extends State<VitrinePage> {
+  double sidePading = 40;
+  Collection collectionService = Collection();
+  int yearIndex = 0;
+  List<Car> cars = [];
+
   @override
   Widget build(BuildContext context) {
+    if (!collectionService.loaded) {
+      collectionService.loadResource().then((value) {
+        int year = collectionService.years[yearIndex];
+        cars = collectionService.getListByYear(year);
+        setState(() {});
+      });
+    }
+
+    if (!collectionService.loaded) {
+      return Container(
+        color: Colors.white,
+        child: Center(
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.green,
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(left: 40, right: 40),
+        padding: EdgeInsets.only(left: sidePading, right: sidePading),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,17 +65,33 @@ class _VitrinePageState extends State<VitrinePage> {
               thickness: .5,
             ),
 
-            // tabbar
-            Container(
-              height: 30,
-              width: 50,
-              color: Colors.green,
+            // car cards
+            Swiper(
+              itemCount: cars.length,
+              layout: SwiperLayout.STACK,
+              itemWidth: 200,
+              itemHeight: 200,
+              itemBuilder: (context, index) {
+                Car car = cars[index];
+                return CarCard(
+                  detail: car,
+                );
+              },
             )
-
-            // tab content
-
-            // year caroucel
           ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.only(left: sidePading, right: sidePading),
+        child: CustomBottomNavigationBar(
+          years: collectionService.years,
+          yearIndex: yearIndex,
+          onTap: (selected) {
+            yearIndex = selected;
+            int year = collectionService.years[yearIndex];
+            cars = collectionService.getListByYear(year);
+            setState(() {});
+          },
         ),
       ),
     );
