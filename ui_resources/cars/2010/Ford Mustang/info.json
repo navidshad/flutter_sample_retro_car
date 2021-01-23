@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Overview",
+        "Manufacturer": "Ford",
+        "Production": "July 2014–present",
+        "Assembly": "Flat Rock, Michigan"
+    },
+    {
+        "title": "Body",
+        "Class": "Pony car, Muscle car",
+        "Body style": "2-door coupé, 2-door convertible",
+        "Layout": "FR layout"
+    },
+    {
+        "title": "Powertrain",
+        "Engine": "2.3 L EcoBoost I4",
+        "Power output": "478 PS (352 kW; 471 hp)",
+        "Transmission":	"6-Speed manual"
+    },
+    {
+        "title": "Dimensions",
+        "Wheelbase": "107.1 in (2,720 mm)",
+        "Length": "188.3 in (4,784 mm)",
+        "Width": "75.4 in (1,916 mm)",
+        "Height": "54.4 in (1,381 mm)"
+    }
+]

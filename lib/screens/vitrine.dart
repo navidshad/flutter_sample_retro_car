@@ -39,38 +39,47 @@ class _VitrinePageState extends State<VitrinePage> {
     }
 
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(left: sidePading, right: sidePading),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: Colors.grey[200],
+      body: LayoutBuilder(builder: (context, constraint) {
+        double width = constraint.maxWidth / 100 * 80;
+        double height = constraint.maxHeight / 100 * 60;
+
+        Widget header = Container(
+            padding: EdgeInsets.only(left: sidePading, right: sidePading),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title
+                Container(
+                  margin: EdgeInsets.only(top: 40, bottom: 35),
+                  child: Text(
+                    'Retro Cars'.toUpperCase(),
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+                // Search
+                TextField(
+                  decoration: InputDecoration(
+                      hintText: 'Search Car',
+                      icon: Icon(Icons.search),
+                      border: InputBorder.none),
+                ),
+                Divider(
+                  color: Colors.grey[300],
+                  thickness: .5,
+                ),
+              ],
+            ));
+
+        return Column(
           children: [
-            // Title
-            Container(
-              margin: EdgeInsets.only(top: 40, bottom: 35),
-              child: Text(
-                'Retro Cars'.toUpperCase(),
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              ),
-            ),
-
-            // Search
-            TextField(
-              decoration: InputDecoration(
-                  hintText: 'Search Car',
-                  icon: Icon(Icons.search),
-                  border: InputBorder.none),
-            ),
-            Divider(
-              color: Colors.grey[300],
-              thickness: .5,
-            ),
-
-            // car cards
+            header,
             Swiper(
               itemCount: cars.length,
               layout: SwiperLayout.STACK,
-              itemWidth: 200,
-              itemHeight: 200,
+              itemWidth: width,
+              itemHeight: height,
               itemBuilder: (context, index) {
                 Car car = cars[index];
                 return CarCard(
@@ -79,8 +88,8 @@ class _VitrinePageState extends State<VitrinePage> {
               },
             )
           ],
-        ),
-      ),
+        );
+      }),
       bottomNavigationBar: Container(
         padding: EdgeInsets.only(left: sidePading, right: sidePading),
         child: CustomBottomNavigationBar(

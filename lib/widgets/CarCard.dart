@@ -12,10 +12,43 @@ class CarCard extends StatefulWidget {
 class _CarCardState extends State<CarCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      child: Text(widget.detail.name),
-      color: Colors.blueAccent,
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      double width = constraints.maxWidth;
+      double coverHeight = constraints.maxHeight / 100 * 60;
+      double remainHeight = constraints.maxHeight - coverHeight;
+
+      Widget column = Column(
+        children: [
+          Container(
+            height: coverHeight,
+            child: Image.asset(
+              widget.detail.coverPath,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            child: Column(
+              children: [
+                Text(
+                  widget.detail.name,
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
+          ),
+        ],
+      );
+
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          child: column,
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+        ),
+      );
+    });
   }
 }

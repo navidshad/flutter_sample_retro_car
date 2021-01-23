@@ -65,26 +65,26 @@ class Collection {
   }
 
   Future<void> loadResource() async {
-    String data = await rootBundle.loadString('assets/cars/list.txt');
+    String data = await rootBundle.loadString('assets/list.txt');
     if (data == null) return;
 
     Completer compeleter = Completer();
 
-    List<String> lines = data.split('\n');
+    List<String> lines = data.trim().split('\n');
     for (var i = 0; i < lines.length; i++) {
       String line = lines[i];
 
       List<String> parts = line.split('-');
       String name = parts[1].trim();
       int year = int.parse(parts[0].trim());
-      String dir = 'assets/cars/${year}/${name}';
-      String coverPath = dir + '/cover.jpg';
-      String sidePath = dir + '/side.png';
+      String dir = 'assets/images/$name';
+      String coverPath = dir + '_cover.jpg';
+      String sidePath = dir + '_side.png';
 
       // load json info of car
       List<CarInformation> infoList;
       await rootBundle.loadStructuredData<List<CarInformation>>(
-          dir + '/info.json', (value) async {
+          dir + '_info.json', (value) async {
         List details = jsonDecode(value);
         List<CarInformation> list = [];
 
