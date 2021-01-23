@@ -19,7 +19,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     selected = widget.yearIndex;
     return Container(
-      height: 60,
+      height: 50,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: widget.years.length,
@@ -33,22 +33,23 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               setState(() {});
             },
             child: Container(
-              margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+              margin: EdgeInsets.only(right: 40, bottom: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     year.toString(),
                     style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: selected == index
-                            ? FontWeight.bold
-                            : FontWeight.normal),
+                        fontSize: 20,
+                        fontFamily: 'bebas-neue',
+                        color: selected == index
+                            ? Colors.black
+                            : Colors.grey[500]),
                   ),
                   if (selected == index)
                     Container(
-                      width: 35,
-                      height: 5,
+                      width: 30,
+                      height: 3,
                       color: Colors.green,
                     )
                 ],

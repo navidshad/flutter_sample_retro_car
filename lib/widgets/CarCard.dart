@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_retro_car/screens/single.dart';
 import 'package:sample_retro_car/services/collection.dart';
 
 class CarCard extends StatefulWidget {
@@ -13,9 +14,11 @@ class _CarCardState extends State<CarCard> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      double width = constraints.maxWidth;
-      double coverHeight = constraints.maxHeight / 100 * 60;
-      double remainHeight = constraints.maxHeight - coverHeight;
+      double shadowMargin = 23;
+      double width = constraints.maxWidth - shadowMargin;
+      double coverHeight = (constraints.maxHeight - shadowMargin) / 100 * 60;
+      double remainHeight =
+          constraints.maxHeight - coverHeight - (shadowMargin * 2);
 
       Widget column = Column(
         children: [
@@ -27,27 +30,70 @@ class _CarCardState extends State<CarCard> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 20),
+            padding: EdgeInsets.only(left: 35, right: 35, top: 10),
+            color: Colors.white,
+            width: width,
+            height: remainHeight,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   widget.detail.name,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                )
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text("\$" + widget.detail.price.toString(), style: TextStyle()),
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Book Now",
+                        style: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 10, top: 6),
+                        width: 20,
+                        height: 3,
+                        color: Colors.green,
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         ],
       );
 
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(10),
+      return GestureDetector(
         child: Container(
-          child: column,
+          margin: EdgeInsets.all(shadowMargin),
           decoration: BoxDecoration(
-            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                // spreadRadius: .0,
+                blurRadius: 20,
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Container(
+              child: column,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+              ),
+            ),
           ),
         ),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (context) => SinglePage(detail: widget.detail)),
+          );
+        },
       );
     });
   }

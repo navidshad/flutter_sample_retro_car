@@ -12,7 +12,7 @@ class VitrinePage extends StatefulWidget {
 }
 
 class _VitrinePageState extends State<VitrinePage> {
-  double sidePading = 40;
+  double sidePading = 60;
   Collection collectionService = Collection();
   int yearIndex = 0;
   List<Car> cars = [];
@@ -39,10 +39,10 @@ class _VitrinePageState extends State<VitrinePage> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[50],
       body: LayoutBuilder(builder: (context, constraint) {
         double width = constraint.maxWidth / 100 * 80;
-        double height = constraint.maxHeight / 100 * 60;
+        double height = constraint.maxHeight / 100 * 50;
 
         Widget header = Container(
             padding: EdgeInsets.only(left: sidePading, right: sidePading),
@@ -51,10 +51,13 @@ class _VitrinePageState extends State<VitrinePage> {
               children: [
                 // Title
                 Container(
-                  margin: EdgeInsets.only(top: 40, bottom: 35),
+                  margin: EdgeInsets.only(top: 80, bottom: 20),
                   child: Text(
                     'Retro Cars'.toUpperCase(),
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontFamily: 'bebas-neue',
+                    ),
                   ),
                 ),
 
@@ -66,9 +69,42 @@ class _VitrinePageState extends State<VitrinePage> {
                       border: InputBorder.none),
                 ),
                 Divider(
-                  color: Colors.grey[300],
+                  color: Colors.grey[500],
                   thickness: .5,
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40, top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "Pricing",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Icon(
+                              Icons.circle,
+                              color: Colors.green,
+                              size: 8,
+                            ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "Mpg",
+                        style: TextStyle(fontSize: 18, color: Colors.grey[400]),
+                      ),
+                      Text(
+                        "Horsepower",
+                        style: TextStyle(fontSize: 18, color: Colors.grey[400]),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ));
 
@@ -78,7 +114,7 @@ class _VitrinePageState extends State<VitrinePage> {
             Swiper(
               itemCount: cars.length,
               layout: SwiperLayout.STACK,
-              itemWidth: width,
+              itemWidth: width / 1.3,
               itemHeight: height,
               itemBuilder: (context, index) {
                 Car car = cars[index];

@@ -10,7 +10,10 @@ class CarInformation {
 
   String get title => _detail['title'];
   List<String> keys() {
-    _detail.keys.toList().where((element) => element != 'title');
+    return _detail.keys
+        .toList()
+        .where((element) => element != 'title' && element != "Description")
+        .toList();
   }
 
   String getValue(String key) {
@@ -33,6 +36,33 @@ class Car {
       this.details,
       this.coverPath,
       this.sidePath});
+
+  dynamic getDetailProperty({String category = "Overview", String property}) {
+    String value = "";
+
+    value = details
+        .firstWhere((element) => element.title == category)
+        .getValue(property);
+
+    return value;
+  }
+
+  List<Map<String, String>> getAllProperties() {
+    List<Map<String, String>> list = [];
+
+    details.forEach((detail) {
+      detail.keys().forEach((property) {
+        list.add(
+          {
+            'property': property,
+            'value': detail.getValue(property),
+          },
+        );
+      });
+    });
+
+    return list;
+  }
 }
 
 class Collection {
