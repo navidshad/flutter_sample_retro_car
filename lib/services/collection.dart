@@ -131,7 +131,7 @@ class Collection {
         year: year,
         coverPath: coverPath,
         sidePath: sidePath,
-        price: 1000,
+        price: 157000,
         details: infoList,
       );
 

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:sample_retro_car/screens/single.dart';
 import 'package:sample_retro_car/services/collection.dart';
@@ -11,8 +13,12 @@ class CarCard extends StatefulWidget {
 }
 
 class _CarCardState extends State<CarCard> {
+  String heroTag;
   @override
   Widget build(BuildContext context) {
+    heroTag =
+        Random().nextDouble().toString() + Random().nextDouble().toString();
+
     return LayoutBuilder(builder: (context, constraints) {
       double shadowMargin = 23;
       double width = constraints.maxWidth - shadowMargin;
@@ -24,9 +30,12 @@ class _CarCardState extends State<CarCard> {
         children: [
           Container(
             height: coverHeight,
-            child: Image.asset(
-              widget.detail.coverPath,
-              fit: BoxFit.cover,
+            child: Hero(
+              tag: heroTag,
+              child: Image.asset(
+                widget.detail.coverPath,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Container(
@@ -91,7 +100,10 @@ class _CarCardState extends State<CarCard> {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => SinglePage(detail: widget.detail)),
+                builder: (context) => SinglePage(
+                      detail: widget.detail,
+                      heroTag: heroTag,
+                    )),
           );
         },
       );

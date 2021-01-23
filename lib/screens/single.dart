@@ -5,7 +5,8 @@ import 'package:sample_retro_car/widgets/BackButton.dart';
 
 class SinglePage extends StatefulWidget {
   Car detail;
-  SinglePage({Key key, @required this.detail}) : super(key: key);
+  String heroTag;
+  SinglePage({Key key, @required this.detail, this.heroTag}) : super(key: key);
 
   @override
   _SinglePageState createState() => _SinglePageState();
@@ -145,9 +146,12 @@ class _SinglePageState extends State<SinglePage> {
                   top: 80,
                   right: carXBasePosition + carXAditionalPositionForAnimation,
                   child: Container(
-                      child: Image.asset(
-                    widget.detail.sidePath,
-                    width: carImageWidth,
+                      child: Hero(
+                    tag: widget.heroTag,
+                    child: Image.asset(
+                      widget.detail.sidePath,
+                      width: carImageWidth,
+                    ),
                   )),
                 ),
 
